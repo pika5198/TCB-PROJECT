@@ -7,7 +7,7 @@ from discord import Webhook, RequestsWebhookAdapter, Embed
 
 #KITH_MONITOR
 last_data = set([])
-product_url = "https://kith.com/products/aaef2229"
+product_url = "https://kith.com/collections/mens-footwear/products/nkcd4366-001"
 #tcb-ticket-webhook
 whook_url = "https://ptb.discordapp.com/api/webhooks/694568207301869649/jNOfZmsnSxYSkK9RbW2cMpU_24hyyy5ZfIroWSw3RP29ZJ9Si0Ej3629DqfbwnKHfD-j"
 def get_stock():
@@ -32,21 +32,28 @@ def get_stock():
     src = j["product"]["images"]
     instock = a.findall(size)
     instock = set(map(int, instock))
+    instock_list = list(instock)
     src = j["product"]["images"]
     title = j["product"]["title"]
     pic = []
+    dictsize={}
     for i in src:
         pic.append(i['src'])
-    return instock,title,pic
+    for x in j["product"]["variants"]:
+        dictsize[str(x["title"])] = "http://kith.com/cart/"+str(x["id"])+":1"
+    return instock,title,pic,instock_list,dictsize
 
-instock,title,pic=get_stock()
+instock,title,pic,instock_list,dictsize=get_stock()
 
 def send_weebhook(status,instock,pic,title):
     webhook = Webhook.from_url(whook_url, adapter=RequestsWebhookAdapter())    
     colors = 7329140
     embed = Embed(title=title, url=product_url,color=colors)
     embed.set_thumbnail(url=pic[1])
-    embed.add_field(name=status, value=instock, inline=False) 
+    for i in instock_list:
+        size = str(i)
+        link = "[**ATC LINK**]"+"("+dictsize[size]+")"
+        embed.add_field(name="**US "+size+"**", value=link,inline=False) 
     embed.set_footer(text='@slom',icon_url='https://lh3.googleusercontent.com/proxy/DJ8iAOUFxJmqjBJjI8npKX_h1Ua0EnuUJRmqbonaiGR5WSl09186rnULj-z7imftnJDakqodY4BFM8hgASYkhvYFhg')
     webhook.send(content='KITH.com',embed=embed)
     
@@ -60,7 +67,7 @@ while True:
         last_data = instock
     elif instock == last_data:
         print("没有变化")
-        time.sleep(10)
+        time.sleep(5)
     elif len(instock - last_data) > 0:
         send_weebhook('补货了',sorted(list(instock)),pic,title)
         last_data = instock
