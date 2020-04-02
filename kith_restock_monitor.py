@@ -8,7 +8,8 @@ from discord import Webhook, RequestsWebhookAdapter, Embed
 #KITH_MONITOR
 last_data = set([])
 product_url = "https://kith.com/products/aaef2229"
-whook_url = "https://discordapp.com/api/webhooks/691501600551731222/3R75yZVJhU-IXbouGyjS_xgnoHNSnF6pC16-toa9ssV62YNEKBLODCDPkaoJGwJ7cFn8"
+#tcb-ticket-webhook
+whook_url = "https://ptb.discordapp.com/api/webhooks/694568207301869649/jNOfZmsnSxYSkK9RbW2cMpU_24hyyy5ZfIroWSw3RP29ZJ9Si0Ej3629DqfbwnKHfD-j"
 def get_stock():
     global last_data
     headers = {
