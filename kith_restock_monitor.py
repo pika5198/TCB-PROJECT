@@ -60,7 +60,7 @@ while True:
         last_data = instock
     elif instock == last_data:
         print("没有变化")
-        time.sleep(3)
+        time.sleep(10)
     elif len(instock - last_data) > 0:
         send_weebhook('补货了',sorted(list(instock)),pic,title)
         last_data = instock
