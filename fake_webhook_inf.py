@@ -8,7 +8,7 @@ def your_discord_avatar():
     return "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI0R2_K6YvEqEdb_KityYjNZEH7fAyn2ujh7Aa3t4cFYwGtWBD"
 
 def webhook_url():
-    return "https://discordapp.com/api/webhooks/691501600551731222/3R75yZVJhU-IXbouGyjS_xgnoHNSnF6pC16-toa9ssV62YNEKBLODCDPkaoJGwJ7cFn8"
+    return ""
 
 def product_name():
     return "Yeezy Boost 350 V2"

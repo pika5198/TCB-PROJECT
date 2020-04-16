@@ -9,7 +9,7 @@ from discord import Webhook, RequestsWebhookAdapter, Embed
 last_data = set([])
 product_url = "https://kith.com/collections/mens-footwear/products/nkcd4366-001"
 #tcb-ticket-webhook
-whook_url = "https://ptb.discordapp.com/api/webhooks/694568207301869649/jNOfZmsnSxYSkK9RbW2cMpU_24hyyy5ZfIroWSw3RP29ZJ9Si0Ej3629DqfbwnKHfD-j"
+whook_url = ""
 def get_stock():
     global last_data
     headers = {
